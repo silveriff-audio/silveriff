@@ -1,0 +1,17 @@
+.mypy_cache
+.vscode
+__pycache__
+.pytest_cache
+dist
+log.txt
+Pipfile.lock
+.env*
+venv
+
+# vim temporary files
+*~
+.*.sw?
+.cache
+
+# macOS
+.DS_Store
