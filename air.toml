@@ -1,0 +1,41 @@
+# Config file for Air
+
+root = "."
+tmp_dir = "bin"
+
+# Build settings
+[build]
+  cmd = "go build -o ./bin/main ./cmd/main.go"
+  post_cmd = ["echo 'Bye~ air'", "rm -f ./bin/main"]
+  bin = "bin/main"
+  include_ext = ["go", "tmpl", "html"]
+  exclude_dir = ["vendor", "bin", "tools", "ui/node_modules"]
+  exclude_file = ["air.toml"]
+  exclude_regex = ["_test.go"]
+  delay = 30000
+
+# Watch settings
+[watch]
+  include = [
+    "cmd",
+    "internal",
+    "ui/src",
+  ]
+  exclude = [
+    "ui/node_modules",
+    "vendor",
+    "bin",
+    "dist",
+  ]
+
+# Prebuild hook for the frontend
+prebuild = "cd ui && yarn build --watch"
+
+[log]
+level = "info"
+
+[color]
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
