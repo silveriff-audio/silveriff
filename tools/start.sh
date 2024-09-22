@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Step 1: Build the frontend (React) inside the ui directory.
-echo "Building frontend..."
+# Step 1: Start Vite in dev mode in the background
+echo "Starting Vite for frontend..."
 cd ui
 
-# Run the build or development build. Use yarn build for production or yarn dev for faster dev build.
-yarn build
-# OR
-# yarn dev
+yarn dev &
+VITE_PID=$! # Save the PID of Vite to kill it later if needed
 
 cd ..
 
@@ -23,3 +21,12 @@ fi
 echo "Starting Air..."
 pwd
 ./bin/air -c air.toml
+
+# Step 4: Clean up Vite process when stopping the script
+if ps -p $VITE_PID > /dev/null
+then
+   echo "Stopping Vite (PID: $VITE_PID)"
+   kill $VITE_PID
+else
+   echo "Vite process $VITE_PID already stopped."
+fi
