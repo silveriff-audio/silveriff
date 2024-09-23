@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"github.com/lemorage/silveriff/internal/handlers"
 )
 
 func main() {
@@ -33,6 +35,9 @@ func main() {
 		// Otherwise serve the requested file
 		http.ServeFile(w, r, filePath)
 	})
+
+	// Route for sending email
+	http.HandleFunc("/api/send-email", handlers.SendEmail)
 
 	// Start the server
 	fmt.Printf("Server is running on port %s...\n", port)
