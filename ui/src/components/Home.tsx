@@ -1,8 +1,9 @@
 import React from 'react';
+import '../App.css';
 
 const Home: React.FC = () => {
   return (
-    <div className="w-full h-screen bg-black text-white overflow-y-auto">
+    <div className="w-full h-screen bg-black text-white overflow-y-auto custom-scroll">
       {/* Video Section */}
       <div className="relative w-full h-[80vh]">
         <video
