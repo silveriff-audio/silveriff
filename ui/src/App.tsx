@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Projects from './components/Projects';
 import Service from './components/Service';
 import Contact from './components/Contact';
-import './App.css';
+import './styles/App.css';
 
 const App: React.FC = () => {
   return (
