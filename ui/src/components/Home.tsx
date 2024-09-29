@@ -57,75 +57,93 @@ const Home: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-6xl mx-auto">
 
           <div className="relative">
+            <a href="https://link-to-project-1.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project1.jpg"
               alt="Project 1"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
 
           <div className="relative">
+            <a href="https://link-to-project-2.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project2.jpg"
               alt="Project 2"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
 
           <div className="relative">
+            <a href="https://link-to-project-3.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project.png"
               alt="Project 3"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
 
           <div className="relative">
+            <a href="https://link-to-project-4.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project-4.jpg"
               alt="Project 4"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
 
           <div className="relative">
+            <a href="https://link-to-project-5.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project-5.jpg"
               alt="Project 5"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
 
           <div className="relative">
+            <a href="https://link-to-project-6.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project-6.jpg"
               alt="Project 6"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
 
           <div className="relative">
+            <a href="https://link-to-project-7.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project-7.jpg"
               alt="Project 7"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
 
           <div className="relative">
+            <a href="https://link-to-project-8.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project-8.jpg"
               alt="Project 8"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
 
           <div className="relative">
+            <a href="https://link-to-project-9.com" target="_blank" rel="noopener noreferrer">
             <img
               src="/project-9.jpg"
               alt="Project 9"
               className="w-full h-auto object-cover"
-            />
+              />
+            </a>
           </div>
         </div>
       </div>
