@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Project {
   id: number;
@@ -11,6 +12,7 @@ interface Project {
 const Projects: React.FC = () => {
   // State to track selected category
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'game' | 'film-tv' | 'commercials'>('all');
+  const navigate = useNavigate();  // Use this to navigate programmatically
 
   useEffect(() => {
     document.title = 'Portfolio | silveriff audio';
@@ -30,6 +32,11 @@ const Projects: React.FC = () => {
   const filteredProjects = selectedCategory === 'all'
     ? projectData
     : projectData.filter(project => project.category === selectedCategory);
+
+  const handleProjectClick = (id: number) => {
+    // Navigate to the project detail page with the project ID
+    navigate(`/project/${id}`);
+  };
 
   return (
     <div className="min-h-screen bg-black text-white px-4 py-8">
@@ -66,7 +73,11 @@ const Projects: React.FC = () => {
       {/* Project Grid */}
       <div className="container mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
         {filteredProjects.map((project) => (
-          <div key={project.id} className="border border-gray-700 p-4">
+          <div 
+            key={project.id} 
+            className="border border-gray-700 p-4 cursor-pointer"
+            onClick={() => handleProjectClick(project.id)}
+          >
             <h3 className="text-xl text-green-500 mb-2">{project.name}</h3>
             <p className="text-green-500 mb-4">{project.details}</p>
             <img
