@@ -54,7 +54,7 @@ const ProjectDetail: React.FC = () => {
     return <div className="text-white">{error}</div>;
   }
 
-  const project = slug && projectVideos[slug];
+  const project = slug && projectVideos[slug] ? projectVideos[slug] : null;
 
   return (
     <div className="min-h-screen bg-black text-white px-4 py-8">
@@ -68,7 +68,7 @@ const ProjectDetail: React.FC = () => {
         ) : (
           <p>Loading video...</p>
         )}
-        <p>{project?.description}</p>
+        {project && <p>{project.description}</p>}
       </div>
     </div>
   );
