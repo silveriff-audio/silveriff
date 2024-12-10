@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+const worker_url = 'https://r2-worker.simonewangmusic.workers.dev/ldr-s3';
 
 const desc_2 = 'Love, Death & Robots is an animated anthology series produced by\
 Netflix, with Tim Miller and David Fincher serving as executive\
@@ -24,33 +26,49 @@ Reality Royalty and nominations at the MTV Movie & TV Awards and\
 the Teen Choice Awards'
 
 const projectVideos: Record<string, { videoUrl: string, description: string }> = {
-  'project-1': { videoUrl: '/path-to-video1.mp4', description: 'Description for Project 1' },
-  'project-2': { videoUrl: '/ldr.mov', description: desc_2 },
-  'project-3': { videoUrl: '/path-to-video3.mp4', description: 'Description for Project 3' },
-  'project-4': { videoUrl: '/path-to-video4.mp4', description: 'Description for Project 4' },
-  'project-5': { videoUrl: '/bac.mp4', description: desc_5 },
-  'project-6': { videoUrl: '/path-to-video6.mp4', description: 'Description for Project 6' },
+  'project-1': { videoUrl: 'https://your-worker-url/video1.mp4', description: 'Description for Project 1' },
+  'project-2': { videoUrl: `${worker_url}/LDR2.mov`, description: desc_2 },
+  'project-3': { videoUrl: 'https://your-worker-url/video3.mp4', description: 'Description for Project 3' },
+  'project-4': { videoUrl: 'https://your-worker-url/video4.mp4', description: 'Description for Project 4' },
+  'project-5': { videoUrl: `${worker_url}/LDR5.mov`, description: desc_5 },
+  'project-6': { videoUrl: 'https://your-worker-url/video6.mp4', description: 'Description for Project 6' },
 };
 
 const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  // Check if the slug exists and has a corresponding project
-  if (!slug || !projectVideos[slug]) {
-    return <div className="text-white">Project not found!</div>;
+  useEffect(() => {
+    if (!slug || !projectVideos[slug]) {
+      setError("Project not found!");
+      return;
+    }
+
+    // Directly use the video URL from projectVideos
+    const video = projectVideos[slug];
+    setVideoUrl(video.videoUrl);
+  }, [slug]);
+
+  if (error) {
+    return <div className="text-white">{error}</div>;
   }
 
-  const project = projectVideos[slug];
+  const project = slug && projectVideos[slug];
 
   return (
     <div className="min-h-screen bg-black text-white px-4 py-8">
       <div className="container mx-auto">
         <h1 className="text-3xl font-bold mb-4">{slug}</h1>
-        <video className="w-full mb-4" controls>
-          <source src={project.videoUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <p>{project.description}</p>
+        {videoUrl ? (
+          <video className="w-full mb-4" controls>
+            <source src={videoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <p>Loading video...</p>
+        )}
+        <p>{project?.description}</p>
       </div>
     </div>
   );
